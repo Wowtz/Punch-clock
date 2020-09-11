@@ -1,0 +1,3 @@
+class Ranking < ApplicationRecord
+    
+end

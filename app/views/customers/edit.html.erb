@@ -1,0 +1,8 @@
+<h1>Customers#edit</h1>
+<p>Find me in app/views/customers/edit.html.erb</p>
+
+<%= form_for @customer do |f| %>
+ <%= f.text_field :name, placeholder: "name" %>
+ <%= f.text_field :status, placeholder: "status" %>
+ <%= f.submit %>
+<% end %>

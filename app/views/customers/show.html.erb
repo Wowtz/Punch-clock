@@ -1,0 +1,7 @@
+<h1>Customers#show</h1>
+<p>Find me in app/views/customers/show.html.erb</p>
+
+<%= link_to  'Remove', @customer, method: :delete, data: {confirm: 'Você tem certeza?'} %>
+
+<h2><%= @customer.name %></h2>
+<h2><%= @customer.status %></h2>
