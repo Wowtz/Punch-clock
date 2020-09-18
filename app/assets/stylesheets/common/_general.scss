@@ -1,0 +1,46 @@
+/* GENERAL CONFIG */
+body {
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size: .9vw;
+}
+
+footer {
+  display: none !important;
+}
+
+.site-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+
+  .main-content {
+    width: 85%;
+  }
+
+  aside {
+    width: 15%;
+  }
+}
+
+/* Spacement */
+.mr-0 {
+  margin-right: 0;
+}
+.ml-0 {
+  margin-left: 0;
+}
+.mb-0 {
+  margin-bottom: 0;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.align-text-left {
+  text-align: left !important;
+}
