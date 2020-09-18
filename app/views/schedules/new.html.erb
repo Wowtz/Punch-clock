@@ -1,0 +1,5 @@
+<%= form_for @schedule do |f| %>
+ <%= f.hidden_field(:started_at, :value => Time.now) %>
+ <%= f.submit %>
+<% end %>
+<%= link_to "Voltar", schedules_path %>
