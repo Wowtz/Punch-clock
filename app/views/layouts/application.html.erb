@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+
     <title>Appvinicius</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
+    
+    <!-- STYLESHEETS -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://unpkg.com/ionicons@4.2.0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css%22%3E">
+    
+    <!-- JAVASCRIPTS -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js%22%3E"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/pt-br.js" type="text/javascript"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js%22%3E"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+    </header>
+
+    <main class="site-content">
+      <section class="main-content">
+        <%= yield %>
+      </section>
+
+      <aside class="ranking">
+        <i class="fas fa-trophy"></i><span>RANKING</span>
+      </aside>
+    </main>
+
+    <footer>
+      Footer
+    </footer>
   </body>
 </html>
