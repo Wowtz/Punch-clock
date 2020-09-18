@@ -1,66 +1,33 @@
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Punch in Clock Vini</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@359;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" 
-  integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" 
-  crossorigin="anonymous"> 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  </head>
-
-<body>
-<aside class="ranking">
-<i class="fas fa-trophy"></i><span>RANKING</span>
-</aside>
-  
-<section class="main">
-<main>
 <div class="relogio">
-<!-- clock widget start -->
-<script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-150x70.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_1_1263104956"><div style="width:150px; height:70px; margin: 0 auto;"><a href="https://ibooked.com.br/time/sao-paulo-18266">São Paulo</a><br/></div></div> <script type="text/javascript"> function setWidgetData_1263104956(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_1263104956 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=585&type=1&id=1263104956&scode=124&city_id=18266&wlangid=8&mode=1&details=0&background=2c9e5d&color=000000&add_background=ffffff&add_color=2071c9&head_color=ffffff&border=1&transparent=1"></script>
-<!-- clock widget end -->
-
+  <script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-150x70.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_1_1263104956"><div style="width:150px; height:70px; margin: 0 auto;"><a href="https://ibooked.com.br/time/sao-paulo-18266">São Paulo</a><br/></div></div> <script type="text/javascript"> function setWidgetData_1263104956(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_1263104956 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=585&type=1&id=1263104956&scode=124&city_id=18266&wlangid=8&mode=1&details=0&background=2c9e5d&color=000000&add_background=ffffff&add_color=2071c9&head_color=ffffff&border=1&transparent=1"></script>
 </div>
 
-  <% @schedules.each do |schedule| %>
-    <tr>
-      <p>
-      <div class="entrada">
+<% if @schedules.empty? %>
+  <button class= "btn1">
+    <%= link_to "BATER", new_schedule_path %>
+  </button>
+<% end %>
+
+<% @schedules.each do |schedule| %>
+  <div>
+    <div class="entrada">
       <strong>ENTRADA:</strong>
       <date-util format="dd/MM/yyyy"></date-util>
-      <%= schedule.started_at.strftime("%I:%M%p %d/%m/%Y")  %>
-      </div>
-      <div class="saida">
+
+      <%= schedule.started_at.strftime("%I:%M%p %d/%m/%Y") %>
+    </div>
+
+    <div class="saida">
       <strong>SAÍDA:</strong>
       <%= schedule.finished_at&.strftime("%I:%M%p %d/%m/%Y") %>
-      </div>
-      </p>
-      <% case true %> 
-      <% when schedule.started_at.nil? %>
-      <button class= "btn1">
-        <%= button_to "BATER", new_schedule_path(schedule), method: 'get' %>
-      </button>
-      <% when schedule.finished_at.nil? %>
-      <button class= "btn2">
-        <%= button_to "SAÍDA", edit_schedule_path(schedule), method: 'get'%>
-      </button>
-      <% end %>
-      <%= button_to 'Remover', schedule_path(schedule), method: 'delete'%>
-      <% end %>
+    </div>
+  </div>
 
-      <button class= "btn1">
-        <%= button_to "BATER", new_schedule_path, method: 'get' %>
-      </button>
+  <button class= "btn2">
+    <%= button_to "SAÍDA", edit_schedule_path(schedule), method: 'get'%>
+  </button>
 
-
-</main>  
-</section>
-</body>
-
-</html>
-
-
+  <button class= "btn2">
+    <%= button_to 'Remover', schedule_path(schedule), method: 'delete'%>
+  </button>
+<% end %>
