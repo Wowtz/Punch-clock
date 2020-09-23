@@ -14,7 +14,7 @@ class SchedulesController < ApplicationController
 
   def create
     schedule = Schedule.create(schedule_params)
-    redirect_to schedules_path
+    redirect_to schedules_path    
   end
 
   def edit
@@ -39,4 +39,5 @@ private
     def current_schedule
         @schedule = Schedule.find(params[:id])
     end
+    
 end

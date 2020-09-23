@@ -3,13 +3,43 @@
   min-height: 100vh;
   padding: 0px;
   margin: 0px;
-  background:palegoldenrod;
+  background: #141414;
   text-align: center;
+  color: aliceblue;
+  display: inline-block;
 
-  i {
-    color: goldenrod; 
-    margin: 10px 10px 0 0;
+  div {
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #282828;
   }
+  .rankingtitle{
+    margin: 0 10px 0 10px;
+      i {
+        color: goldenrod; 
+        margin: 10px 10px 10px 0;
+        height: 2vh;
+      }
+  }
+
+  .rankingfaq {
+    font-size: 0.85em;
+    border: none;
+  }
+  .rankingclass {
+    text-align: left;
+    height: 79vh;
+    margin: 20px 10px 0 10px;
+    li { 
+      margin: 0 0 0 10px;
+      content: "\00B0";
+      margin-top: 10px;
+    }
+    b {
+      margin-left: 90px;
+    }
+  }
+
 }
 
 
@@ -31,13 +61,22 @@
 }
  
   .btn {
+    cursor: pointer;
     display: flex;
     border: none;
     text-align: center;
     font-size: 20px;
     transition: all 0.8s;
     margin: 5px;
-    background-color: white;
+    color: #050505;
+    width: auto;
+    height: 25px;
+    background: linear-gradient(to left, rgb(245, 245, 245), rgb(236, 236, 236));
+    border-radius: 4px;
+    :link, :visited {
+      color: #050505;
+      text-decoration: none;
+    }
     span {
       display: inline-block;
       position: relative;
@@ -67,10 +106,10 @@
   .btn2 {
     margin-left: auto;
     margin-right: 10%;
-    margin-top: 25px;
+    margin-top: 40px;
   }
   .btn1 {
     margin-left: auto;
     margin-left: 10%;
-    margin-top: 25px;
+    margin-top: 40px;
   }

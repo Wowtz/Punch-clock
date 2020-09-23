@@ -1,40 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relógio de Ponto</title>
+</head>
+<body>
+
 <div class="relogio">
-<iframe src="http://free.timeanddate.com/clock/i7gsait2/n233/tlbr5/tct/pct/tt0/tw0/tm1/th2/ts1/tb4" frameborder="0" width="121" height="34" allowTransparency="true"></iframe>
-</div>
+
+   <div id="clock"></div>
+<!-- SCRIPT DO RELEGIO -->
+   <script>
+    function currentTime() {
+      var date = new Date(); /* creating object of Date class */
+      var hour = date.getHours();
+      var min = date.getMinutes();
+      var sec = date.getSeconds();
+      var midday = "AM";
+      midday = (hour >= 12) ? "PM" : "AM"; /* assigning AM/PM */
+      hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12): hour); /* assigning hour in 12-hour format */
+      hour = updateTime(hour);
+      min = updateTime(min);
+      sec = updateTime(sec);
+      document.getElementById("clock").innerText = hour + " : " + min + " : " + sec + " " + midday; /* adding time to the div */
+        var t = setTimeout(currentTime, 1000); /* setting timer */
+      }
+      function updateTime(k) { /* appending 0 before time elements if less than 10 */
+        if (k < 10) {
+          return "0" + k;
+        }
+        else {
+          return k;
+        }
+      }
+      currentTime();
+   </script>
+   </div>
 
 
-<!-- TEXT -->
-
-<div class="controle">
-    <div class="entrada">
-      <strong>ENTRADA:</strong>
-      <date-util format="dd/MM/yyyy"></date-util>
-
-      <%= @schedules.last&.started_at&.strftime("%I:%M%p %d/%m/%Y") %>
+   <!-- PAINEL -->
+   <div class="controlegeral">
+    <div class="controle">
+      <div class="entrada">
+        <p>ENTRADA:</p>
+      </div>
+      <div class="saida">
+        <p>SAÍDA:</p>
+      </div>
     </div>
 
-    <div class="saida">
-      <strong>SAÍDA:</strong>
-      <%= @schedules.last&.finished_at&.strftime("%I:%M%p %d/%m/%Y") %>
+<!-- that part change everyday -->
+
+<% if @schedules.last&.started_at&.strftime("%d/%m/%Y") == Time.now.strftime("%d/%m/%Y") %>
+
+     <div class="horarios">
+       <p class="entradac">
+         <%= @schedules.last&.started_at&.strftime("%d/%m/%Y  %I:%M%p ") %>
+       </p>
+       <p class="saidac">
+         <%= @schedules.last&.finished_at&.strftime("%d/%m/%Y %I:%M%p" ) %>
+       </p>
+     </div>
     </div>
-  </div>
-
-<% @schedules.each do |schedule| %>
-<% unless schedule.finished_at.present? %>
-  <button class= "btn2 btn"><span>
-    <%= button_to "SAÍDA", edit_schedule_path(schedule), method: 'get'%>
-    </span>
-  </button>
+    
 <% end %>
+   <!-- ruby -->
+   <% @schedules.each do |schedule| %>
+   <% if @schedules.last&.finished_at&.strftime("%d/%m/%Y") != Time.now.strftime("%d/%m/%Y") %>
+     <button class= "btn2 btn"><span>
+       <%= link_to "SAÍDA", edit_schedule_path(schedule), method: 'get'%>
+       </span>
+     </button>
+   <% end %>
 
-  <button class= "btn3 btn"><span>
-    <%= button_to 'Remover', schedule_path(schedule), method: 'delete'%></span>
-  </button>
-<% end %>
-
-<% if @schedules.empty? %>
-  <button class= "btn1 btn"><span>
-    <%= button_to "BATER", new_schedule_path, method: 'get' %>
-    </span>
-  </button>
-<% end %>
+  <!-- 
+     <button class= "btn3 btn"><span>
+       <%= link_to 'Remover', schedule_path(schedule), method: 'delete'%></span>
+     </button>
+   <% end %>
+   -->
+   <% if @schedules.last&.started_at&.strftime("%d/%m/%Y") != Time.now.strftime("%d/%m/%Y") %>
+     <button class= "btn1 btn"><span>
+       <%= link_to "BATER", new_schedule_path, method: 'get' %>
+       </span>
+     </button> 
+     
+   <% end %>
+   
+</body>
+</html>

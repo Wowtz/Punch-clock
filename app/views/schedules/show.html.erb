@@ -1,4 +1,4 @@
-<h2><%= @schedule.started_at %></h2>
-<h2><%= @schedule.finished_at %></h2>
+<h2>Ponto de entra confirmado às: <%= @schedule.started_at.strftime("%d/%m/%Y  %I:%M%p ") %></h2>
+<h2>Ponto de saída confirmado às: <%= @schedule.finished_at.strftime("%d/%m/%Y  %I:%M%p ") %></h2>
 
 <%= link_to  "Voltar", schedules_path %>
