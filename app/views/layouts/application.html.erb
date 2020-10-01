@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="pt-br">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -39,35 +40,69 @@
 
   <body>
     <header>
-    <p>     
-    <a class="btncalendar">
-    <i class="fas fa-calendar-alt"></i>
-    </a>
-    <nav class="calendar">
-      <a class= "btn-close"><%= Date.today.strftime("%d/%m/%Y") %></a>    
-    </p>
+      <div class="topbtns">     
+        <a class="btncalendar">
+          <i class="fas fa-calendar-alt"></i>
+        </a>
+
+        <nav class="calendar">
+          <a class="btn-close-calendar">
+            <%= Date.today.strftime("%d/%m/%Y") %> 
+          </a> 
+        </nav>   
+      
+        <a class ="home" href="<%= schedules_path %>"><i class="fas fa-home"></i> <strong> Home </strong></a>
+
+        <!-- Days Off and Holydays -->
+        <a class="btndayoff">
+          <i class="fas fa-bed"></i> <strong> Folgas e Feriados </strong> 
+        </a>
+        <nav class="dayoffmenu">
+          <a class= "btn-close-dayoff">
+          <i class="fas fa-times"></i>
+          </a>
+          <ul>
+            <li>
+              <%= link_to "Adicionar",  new_dayoff_path, method: 'get' %>
+            </li>
+            <li> 
+              <%= link_to "Gerenciar",  dayoffs_path, method: 'get' %>
+            </li>
+          </ul>
+        </nav>
+      
+      </div>
     </header>
 
     <main class="site-content">
       <section class="main-content">
-      
         <%= yield %>
       </section>
 
       <aside class="ranking">
         <div class="rankingtitle">
-        <i class="fas fa-trophy"></i><span>RANKING</span>
+          <i class="fas fa-trophy"></i>
+          <span>RANKING</span>
         </div>
-        <div class="rankingclass">
-        
-          <li class="grade">1 <span>&#176;</span><b class="days"> 45 dias </b></li>  
-          <li class="grade">2 <span>&#176;</span><b class="days"> 15 dias </b></li>  
-          <li class="grade">3 <span>&#176;</span><b class="days"> 5 dias </b></li>  
-          <li class="grade">4 <span>&#176;</span><b class="days"> 3 dias </b></li>   
-          <li class="grade">5 <span>&#176;</span><b class="days"> 1 dias </b></li>  
-         
 
+        <div class="rankingclass">     
+          <li class="grade">1 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[0] %> Dias </b></li>  
+          <li class="grade">2 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[1] %> Dias </b></li>  
+          <li class="grade">3 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[2] %> Dias </b></li>  
+          <li class="grade">4 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[3] %> Dias </b></li>   
+          <li class="grade">5 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[4] %> Dias </b></li>  
         </div>
+        
+        <div class="nextday">
+          <p> Proximo descanso: </p>
+          <p> <%= Dayoff.pluck(:vacantday).last.to_date %>
+        </div>
+
+        <div class="currentranking">
+          <p> Contador Atual </p>
+          <p> <%= Ranking.last&.time %> </p>
+        </div>
+
         <div class="rankingfaq">
           <p>Sobre o Autor</p>
           <p>Direitos de Uso</p>
@@ -76,25 +111,37 @@
           <p>Como Funciona</p>      
         </div>
       </aside>
-
     </main>
 
     <footer>
       FOOTER
     </footer>
 
-  <!-- JQUERY -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script>
+    <script>
       $(".btncalendar").click(function(){
       $(".calendar").show()
       });
-  </script>
-  <script>
-      $(".btn-close").click(function(){
+    </script>
+
+    <script>
+      $(".btn-close-calendar").click(function(){
       $(".calendar").hide()
       });
-  </script>
+    </script>
+
+    <script>
+      $(".btndayoff").click(function(){
+      $(".dayoffmenu").show()
+      });
+    </script>
+
+    <script>
+      $(".btn-close-dayoff").click(function(){
+      $(".dayoffmenu").hide()
+      });
+    </script>
   </body>
 </html>

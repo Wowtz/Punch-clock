@@ -2,7 +2,7 @@
 .ranking {
   min-height: 100vh;
   padding: 0px;
-  margin: 0px;
+  margin: 0;
   background: #141414;
   text-align: center;
   color: aliceblue;
@@ -12,23 +12,18 @@
     border-bottom: solid;
     border-width: 1px;
     border-color: #282828;
+    margin: 0 10px 0 10px;
   }
   .rankingtitle{
-    margin: 0 10px 0 10px;
-      i {
-        color: goldenrod; 
-        margin: 10px 10px 10px 0;
-        height: 2vh;
-      }
-  }
-
-  .rankingfaq {
-    font-size: 0.85em;
-    border: none;
+    i {
+      color: goldenrod; 
+      margin: 10px 10px 10px 0;
+      height: 2vh;
+    }
   }
   .rankingclass {
     text-align: left;
-    height: 79vh;
+    height: 30vh;
     margin: 20px 10px 0 10px;
     li { 
       margin: 0 0 0 10px;
@@ -39,7 +34,19 @@
       margin-left: 90px;
     }
   }
-
+  .nextday {
+    margin-bottom: 30vh;
+  }
+  .currentranking {
+    border-top: solid;
+    border-width: 1px;
+    border-color: #282828;
+    margin: 0 10px 0 10px;
+  }
+  .rankingfaq {
+    font-size: 0.85em;
+    border: none;
+  }
 }
 
 

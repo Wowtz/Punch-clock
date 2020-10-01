@@ -1,38 +1,92 @@
 
 header {
-    background-color: #141414;
+  display: flex;
+  background-color: #141414;
+  color: white;
+  height: 5vh;
+  font-size: 1em;
+  margin-left: 5px;
+  a.home {
+    margin: 15px 0 0 15px;
     color: white;
-    height: 5vh;
-    font-size: 1em;
-    p {
-     display: flex;
-     margin-left: 10px;
-     margin-top: 10px;
+    text-decoration: none;
+    :link, :visited {
+      color: white;
+      text-decoration: none;
     }
-    h4 {
-     
-     font-size: 0.7em;
+  } 
+  h4 {
+    font-size: 0.7em;
+  }
+  .btncalendar {
+    cursor: pointer;
+    font-size: 1.4em;   
+  }
+  .btn-close-calendar {
+    cursor: pointer;
+  }
+  .calendar {
+    display: none;
+    position: absolute;
+    margin-left: 5px;
+    background: whitesmoke;
+    color: #111111;
+    width: 100px;
+    height: 17px;
+    text-align: center;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: solid;
+    border-color: #181818;
+    margin: none;
+  }
+
+  .dayoffmenu {
+    display: none;
+    position: absolute;
+    margin-left: 280px;
+    width: 160px;
+    margin-top: 10px;
+    background-color: #141414;
+    ul {
+      list-style: none;
+      li{
+        margin-top: 15px;
+        color: white;
+        :link, :visited {
+          color: white;
+          text-decoration: none;
+        }
+        &:hover {
+          border: solid;
+          border-width: 1px;
+          border-color: orange;
+          padding: 2%;
+          cursor: pointer;
+        }
+      }
     }
-    .btncalendar {
-     cursor: pointer;
-     font-size: 1.4em;   
-    }
-    .btn-close {
-     cursor: pointer;
-    }
-    .calendar {
-      display: none;
+    nav{
       position: absolute;
-      margin-left: 5px;
-      background: whitesmoke;
-      color: #111111;
-      width: 100px;
-      height: 17px;
-      text-align: center;
-      font-size: 1.1em;
-      border-radius: 5px;
-      border: solid;
-      border-color: #181818;
-      margin: none;
+      height: 200px;
+      margin-top: 300px;
+      i {
+        float: right;
+      }
     }
+  }
+  .btndayoff {
+    cursor: pointer;
+    margin-left: 200px;
+    font-size: 1em;
+    i {
+      font-size: 1.4em;
+    }
+  }
+  .btn-close-dayoff {
+    margin-bottom: 10px;
+    cursor: pointer;
+    float: right;
+    padding: 3%;
+  }
 }

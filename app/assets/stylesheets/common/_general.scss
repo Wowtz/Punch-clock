@@ -11,34 +11,41 @@ body {
   background-color: #282828;
   color: rgb(240, 240, 240);
 
-.controlegeral{
+  .controlegeral{
     height: auto;
     background:rgb(0,0,0);
     background: transparent\9;
     background:rgba(0,0,0,0.4);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);
     zoom: 1;
-  .horarios {
-    width: 85%;
-    display: flex;
-    font-size: 1.3em;
-    .entradac {
-      margin-left: 12%;
+
+    .horarios {
+      width: 85%;
+      display: flex;
+      font-size: 1.3em;
+
+      .entradac {
+        margin-left: 12%;
+      }
+
+      .saidac {
+        margin-left: 56.2%;
+      }
     }
-    .saidac {
-      margin-left: 56.2%;
+
+    .controle {
+      width: 85%;
+
+      .entrada {
+        margin-left: 4%;
+      }
+
+      .saida {
+        margin-left: 65.5%;
+      }
     }
   }
-  .controle {
-    width: 85%;
-    .entrada {
-      margin-left: 4%;
-    }
-    .saida {
-      margin-left: 65.5%;
-    }
-  }
-}
+
   .relogio {
     font-size: 3em;
     border-bottom: solid;
@@ -47,7 +54,6 @@ body {
     padding: 0 0 5% 0;
     margin: 5% 1% 0% 1%;
   }
-  
 }
 
 

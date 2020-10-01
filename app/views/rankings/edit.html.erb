@@ -1,6 +1,5 @@
-<h1>Rankings#edit</h1>
-<p>Find me in app/views/rankings/edit.html.erb</p>
-
-<%= form_for elapsed do |f| %>
-
+<%= form_for @ranking do |f| %>
+ <%= f.hidden_field(:time, :value => @ranking.time + 1) %>
+ <%= f.submit %>
 <% end %>
+<%= link_to "Voltar", schedules_path %>

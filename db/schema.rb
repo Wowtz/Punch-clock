@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_205417) do
+ActiveRecord::Schema.define(version: 2020_10_01_104711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,16 @@ ActiveRecord::Schema.define(version: 2020_09_14_205417) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "day_offs", force: :cascade do |t|
+    t.datetime "dayoff"
+  end
+
+  create_table "dayoffs", force: :cascade do |t|
+    t.date "vacantday"
+  end
+
   create_table "rankings", force: :cascade do |t|
-    t.string "time"
+    t.integer "time", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

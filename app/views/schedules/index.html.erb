@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relógio de Ponto</title>
-</head>
-<body>
-
 <div class="relogio">
+  <div id="clock"></div>
 
-   <div id="clock"></div>
-<!-- SCRIPT DO RELEGIO -->
-   <script>
+  <script>
     function currentTime() {
       var date = new Date(); /* creating object of Date class */
       var hour = date.getHours();
@@ -35,58 +25,46 @@
         }
       }
       currentTime();
-   </script>
-   </div>
+  </script>
+</div>
 
-
-   <!-- PAINEL -->
-   <div class="controlegeral">
-    <div class="controle">
-      <div class="entrada">
-        <p>ENTRADA:</p>
-      </div>
-      <div class="saida">
-        <p>SAÍDA:</p>
-      </div>
+<div class="controlegeral">
+  <div class="controle">
+    <div class="entrada">
+      <p>ENTRADA:</p>
     </div>
 
-<!-- that part change everyday -->
-
-<% if @schedules.last&.started_at&.strftime("%d/%m/%Y") == Time.now.strftime("%d/%m/%Y") %>
-
-     <div class="horarios">
-       <p class="entradac">
-         <%= @schedules.last&.started_at&.strftime("%d/%m/%Y  %I:%M%p ") %>
-       </p>
-       <p class="saidac">
-         <%= @schedules.last&.finished_at&.strftime("%d/%m/%Y %I:%M%p" ) %>
-       </p>
-     </div>
+    <div class="saida">
+      <p>SAÍDA:</p>
     </div>
-    
-<% end %>
-   <!-- ruby -->
-   <% @schedules.each do |schedule| %>
-   <% if @schedules.last&.finished_at&.strftime("%d/%m/%Y") != Time.now.strftime("%d/%m/%Y") %>
-     <button class= "btn2 btn"><span>
-       <%= link_to "SAÍDA", edit_schedule_path(schedule), method: 'get'%>
-       </span>
-     </button>
-   <% end %>
+  </div>
 
-  <!-- 
-     <button class= "btn3 btn"><span>
-       <%= link_to 'Remover', schedule_path(schedule), method: 'delete'%></span>
-     </button>
-   <% end %>
-   -->
-   <% if @schedules.last&.started_at&.strftime("%d/%m/%Y") != Time.now.strftime("%d/%m/%Y") %>
-     <button class= "btn1 btn"><span>
-       <%= link_to "BATER", new_schedule_path, method: 'get' %>
-       </span>
-     </button> 
-     
-   <% end %>
-   
-</body>
-</html>
+  <% if @schedule&.started_at&.strftime("%d/%m/%Y") == @now.strftime("%d/%m/%Y") %>
+    <div class="horarios">
+      <p class="entradac">
+        <%= @schedule.started_at&.strftime("%d/%m/%Y  %I:%M%p") %>
+      </p>
+
+      <p class="saidac">
+        <%= @schedule.finished_at&.strftime("%d/%m/%Y %I:%M%p" ) %>
+      </p>
+    </div>
+  <% end %>
+
+  <% if @schedule.present? && @schedule&.finished_at&.strftime("%d/%m/%Y") != @now.strftime("%d/%m/%Y") %>
+    <button class= "btn2 btn">
+      <span>
+        <%= link_to "SAÍDA", schedule_path(@schedule, status: 'finishing'), method: 'put'%>
+      </span>       
+    </button>
+  <% end %>
+
+  <% if @schedule&.started_at&.strftime("%d/%m/%Y") != @now.strftime("%d/%m/%Y") ||  @schedule.nil? %>
+    <button class= "btn1 btn">
+      <span>
+        <%= link_to "BATER", new_schedule_path, method: 'get' %>
+      </span>
+    </button> 
+  <% end %>
+  
+</div>

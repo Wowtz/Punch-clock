@@ -1,0 +1,9 @@
+<div class="newday">
+  <div class="addnewday">
+  Adicionar Folga ou Feriado:
+  <%= form_for @dayoff do |f| %>
+    <%= f.date_select :vacantday %>
+    <%= f.submit "Adicionar" %>
+  <% end %>
+  </div>
+</div>

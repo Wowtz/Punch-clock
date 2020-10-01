@@ -1,11 +1,12 @@
 class RankingsController < ApplicationController
-  before_action :current_ranking, only: [:edit, :update, :show, :destroy]
+    before_action :current_ranking, only: [:edit, :update, :show, :destroy]
+
   def index
     @rankings = Ranking.all
   end
 
   def show
-
+    redirect_to schedules_path
   end
 
   def new
@@ -13,8 +14,11 @@ class RankingsController < ApplicationController
   end
 
   def create
-    ranking = Ranking.create(ranking_params)
-    redirect_to rankings_path
+    if Ranking.create(ranking_params)
+      redirect_to schedules_path, notice: 'Ranking criado com sucesso'
+    else
+      redirect_to schedules_path, alert: 'Não foi possível criar o Ranking'
+    end
   end
 
   def edit
@@ -22,46 +26,25 @@ class RankingsController < ApplicationController
   end
 
   def update
-    @ranking.update(ranking_params)
-    redirect_to rankings_path
+    if @ranking.update(ranking_params)
+      redirect_to schedules_path, notice: 'Ranking foi atualizado.'
+    else
+      redirect_to schedules_path, alert: 'Não foi possível atualizar o Ranking.'
+    end
   end
 
   def destroy
     @ranking.destroy
-    redirect_to rankings_path
-  end
-
-  def engage
-    @start = Time.now
-  end
-  
-  def elapsed_time
-   now = Time.now
-   elapsed = (now - @start)
-   @start = Time.now
+    redirect_to schedules_path
   end
   
 private
 
   def ranking_params
-    params.require(:ranking).permit(:time)
+    params.require(:ranking).permit(:time, :id)
   end
 
   def current_ranking
-    @ranking = Ranking.find(params[:id])
+    @ranking = Ranking.order(:id).last
   end
-end
-
-############################################################
-class Cronometro
-  
-def initialize()
-  @start = Time.now
-end
-
-def elapsed_time
- now = Time.now
- elapsed = (now - @start)
-end
-
 end

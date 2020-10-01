@@ -1,0 +1,46 @@
+.fef {
+  margin: 0px 20px 0 20px;
+  h1 {
+    font-size: 2em;
+    border-bottom: solid;
+    border-width: 2px;
+    border-color: #282828;
+    padding: 3%;
+    text-align: center;
+    }  
+  .data1 {
+    font-size: 2em;
+    margin: 20px;
+  }
+  .alldatas, :link, :visited {
+    text-decoration:none;
+    color: white;
+    .data {
+      display: left;
+      margin-left: 10px;
+    }
+    .edit, .remove {
+      float: right;
+      margin-right: 20px;
+    }
+  }
+
+  hr {
+    border-bottom: solid;
+    border-width: 2px;
+    border-color: #282828;
+  }
+}
+
+.newday {
+  display: flex;
+  margin: 40px 20px 0 20px;
+  font-size: 1.2em;
+  .addnewday {
+    width: 100%;
+    :link, :visited {
+      text-decoration:none;
+      color: white;
+    }
+  }
+}
