@@ -1,8 +1,10 @@
 class DayoffsController < ApplicationController
-    before_action :current_dayoff, only: [:show, :edit, :update, :destroy]
-  
+  before_action :current_dayoff, only: [:show, :edit, :update, :destroy]
+  before_action :alldaysoff
+  before_action :nextday
+
     def index
-      @dayoffs = Dayoff.all
+      
     end
   
     def show
@@ -41,6 +43,19 @@ class DayoffsController < ApplicationController
     def current_dayoff
       @dayoff = Dayoff.find(params[:id])
     end
-    
+
+    def alldaysoff
+     @dayoffs = Dayoff.all.sort_by &:vacantday
+    end
+
+    def nextday
+      b = Dayoff.pluck(:vacantday).sort.reverse
+      b.each do |lastest|
+        if lastest >= Date.today
+        @lastest = lastest
+        end
+      end
+    end
+
   end
   

@@ -93,14 +93,10 @@
           <li class="grade">5 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[4] %> Dias </b></li>  
         </div>
         
-        <div class="nextday">
-          <p> Proximo descanso: </p>
-          <p> <%= Dayoff.pluck(:vacantday).last.to_date %>
-        </div>
 
         <div class="currentranking">
           <p> Contador Atual </p>
-          <p> <%= Ranking.last&.time %> </p>
+          <p> <%= Ranking.first&.time %> </p>
         </div>
 
         <div class="rankingfaq">

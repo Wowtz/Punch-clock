@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :current_schedule,  only: [:show, :edit, :update, :destroy]
+  before_action :dayoffp , only: [:index, :update]
   before_action :now
 
   def index
@@ -37,7 +38,7 @@ class SchedulesController < ApplicationController
     when 'finishing'
       @schedule.update(finished_at: Time.zone.now)
       if (Ranking.last.present? && (Schedule.last&.finished_at&.to_date == Date.yesterday || Date.yesterday.strftime("%A") == "Sunday" ||
-         (Date.yesterday.in?(Dayoff.pluck(:vacantday))) && (Schedule.last&.finished_at&.to_date+1).in?(Dayoff.pluck(:vacantday)) || (Schedule.last&.finished_at&.to_date + 1).strftime("%A")  == "Saturday"))
+         (Date.yesterday.in?(@dayoffp)) && (Schedule.last&.finished_at&.to_date+1).in?(@dayoffp) || (Schedule.last&.finished_at&.to_date + 1).strftime("%A")  == "Saturday"))
         ranking = Ranking.last
         ranking.update(time: ranking.time + 1)
       else
@@ -64,6 +65,10 @@ class SchedulesController < ApplicationController
 
   def current_schedule
     @schedule = Schedule.find(params[:id])
+  end
+
+  def dayoffp
+    @dayoffp = Dayoff.pluck(:vacantday).sort{|a, b| a <=> b}
   end
 
   def now
