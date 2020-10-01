@@ -36,7 +36,8 @@ class SchedulesController < ApplicationController
      redirect_to schedule_path, notice: 'Entrada marcada com sucesso.'
     when 'finishing'
       @schedule.update(finished_at: Time.zone.now)
-      if Ranking.last.present? && ((Schedule.last&.finished_at&.to_date == Date.today - 1) || (Date.today - 1).strftime("%A") == "Sunday" || (Date.today - 1) == Dayoff.last.vacantday)
+      if (Ranking.last.present? && (Schedule.last&.finished_at&.to_date == Date.yesterday || Date.yesterday.strftime("%A") == "Sunday" ||
+         (Date.yesterday.in?(Dayoff.pluck(:vacantday))) && (Schedule.last&.finished_at&.to_date+1).in?(Dayoff.pluck(:vacantday)) || (Schedule.last&.finished_at&.to_date + 1).strftime("%A")  == "Saturday"))
         ranking = Ranking.last
         ranking.update(time: ranking.time + 1)
       else
