@@ -86,17 +86,21 @@
         </div>
 
         <div class="rankingclass">     
-          <li class="grade">1 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[0] %> Dias </b></li>  
-          <li class="grade">2 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[1] %> Dias </b></li>  
-          <li class="grade">3 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[2] %> Dias </b></li>  
-          <li class="grade">4 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[3] %> Dias </b></li>   
-          <li class="grade">5 <span>&#176;</span><b class="days"> <%= Ranking.pluck(:time).sort{|a, b| b <=> a}[4] %> Dias </b></li>  
+          <li class="grade">1 <span>&#176;</span><b class="days"> <%= @rankingposition[0] %> Dias </b></li>  
+          <li class="grade">2 <span>&#176;</span><b class="days"> <%= @rankingposition[1] %> Dias </b></li>  
+          <li class="grade">3 <span>&#176;</span><b class="days"> <%= @rankingposition[2] %> Dias </b></li>  
+          <li class="grade">4 <span>&#176;</span><b class="days"> <%= @rankingposition[3] %> Dias </b></li>   
+          <li class="grade">5 <span>&#176;</span><b class="days"> <%= @rankingposition[4] %> Dias </b></li>  
         </div>
         
+        <div class="lastpoint">
+          <p> Data do último ponto: </p>
+          <p> <%= @lastschedule %> </p>
+        </div>
 
         <div class="currentranking">
           <p> Contador Atual </p>
-          <p> <%= Ranking.first&.time %> </p>
+          <p> <%= @rankings.last&.time %> </p>
         </div>
 
         <div class="rankingfaq">
