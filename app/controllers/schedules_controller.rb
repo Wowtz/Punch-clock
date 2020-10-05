@@ -2,13 +2,10 @@ class SchedulesController < ApplicationController
   before_action :current_schedule,  only: [:show, :edit, :update, :destroy]
   before_action :dayoffp , only: [:index, :update]
   before_action :now
-  before_action :rankingposition
 
   def index
     @schedule = Schedule.last if Schedule.last&.started_at&.to_date == Date.today
-    @rankings = Ranking.all
-    @dayoffs = Dayoff.all
-    @lastschedule = Schedule.last.finished_at.strftime("%A/%m/%Y")
+    
   end
 
   def show
@@ -77,7 +74,5 @@ class SchedulesController < ApplicationController
     @now = Date.today
   end
 
-  def rankingposition
-    @rankingposition = Ranking.pluck(:time).sort{|a, b| b <=> a}
-  end
+ 
 end
