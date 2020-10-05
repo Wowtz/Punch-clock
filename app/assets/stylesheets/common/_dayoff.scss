@@ -8,9 +8,16 @@
     padding: 3%;
     text-align: center;
     }  
-  .data1 {
+  .data1, .description1 {
     font-size: 2em;
     margin: 20px;
+  }
+  .descriptions {
+    margin-left: 120px;
+    font-size: 1.3em;
+  }
+  .description1 {
+    margin-left: 80px;
   }
   .alldatas, :link, :visited {
     text-decoration:none;

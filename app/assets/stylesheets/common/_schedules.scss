@@ -38,13 +38,18 @@
     margin: 0 10px 0 10px;
   }
   .clock {
+    margin-top: 5vh;
     width: 27vh;
+  }
+  p.emconst {
+    margin-bottom: 7vh;
   }
   .rankingfaq {
     font-size: 0.85em;
     border-top: solid;
     border-width: 1px;
     border-color: #282828;
+    border-bottom: none;
   }
 }
 

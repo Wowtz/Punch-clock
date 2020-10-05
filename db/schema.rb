@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_104711) do
 
   create_table "dayoffs", force: :cascade do |t|
     t.date "vacantday"
+    t.string "description"
   end
 
   create_table "rankings", force: :cascade do |t|

@@ -3,10 +3,12 @@
 
   <div class="datalist">
     <span class="data1"> Datas </span>
+    <span class="description1"> Descrição </span>
   <hr>
     <% @dayoffs.each do |dayoff| %>
       <div class="alldatas">
         <span class="data"> <%= link_to dayoff.vacantday.strftime("%d/%m/%Y"), dayoff_path(dayoff) %> </span>
+        <span class = "descriptions"> <%= link_to dayoff.description, dayoff_path(dayoff) %> </span>
         <span class="edit"> <%= link_to 'Edit', edit_dayoff_path(dayoff), method: 'get'%> </span>
         <span class="remove"> <%= link_to 'Remove', dayoff_path(dayoff), method: 'delete', data: { confirm: 'Você tem certeza?' } %> </span>
       </div>

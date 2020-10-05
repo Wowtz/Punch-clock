@@ -37,7 +37,7 @@ class DayoffsController < ApplicationController
   private
   
     def dayoff_params
-      params.require(:dayoff).permit(:vacantday, :id)
+      params.require(:dayoff).permit(:description, :vacantday, :id)
     end
   
     def current_dayoff

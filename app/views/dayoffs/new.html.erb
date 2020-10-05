@@ -3,6 +3,7 @@
   Adicionar Folga ou Feriado:
   <%= form_for @dayoff do |f| %>
     <%= f.date_select :vacantday %>
+    <%= f.text_field :description, class: "description", maxlenght: 40%>
     <%= f.submit "Adicionar" %>
   <% end %>
   </div>

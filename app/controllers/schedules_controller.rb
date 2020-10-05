@@ -36,12 +36,20 @@ class SchedulesController < ApplicationController
      redirect_to schedule_path, notice: 'Entrada marcada com sucesso.'
     when 'finishing'
       @schedule.update(finished_at: Time.zone.now)
-      if (Ranking.last.present? && (Schedule.last&.finished_at&.to_date == Date.yesterday || Date.yesterday.strftime("%A") == "Sunday" ||
-         (Date.yesterday.in?(@dayoffp)) && (Schedule.last&.finished_at&.to_date+1).in?(@dayoffp) || (Schedule.last&.finished_at&.to_date + 1).strftime("%A")  == "Saturday"))
-        ranking = Ranking.last
-        ranking.update(time: ranking.time + 1)
-      else
-        Ranking.create
+
+      if Schedule.last.present?
+        a = Schedule.last.finished_at.to_date + 1.days
+        b = Date.today
+        for i in a..b
+          if a.strftime("%A") == "Saturday" || a.strftime("%A") == "Sunday" || a.in?(@dayoffp) || a == b
+            a + 1.days
+          else
+            Ranking.create
+            ranking = Ranking.last
+            ranking.update(time: ranking.time + 1)
+          end
+        end
+        Ranking.create if Ranking.last.nil?   
         ranking = Ranking.last
         ranking.update(time: ranking.time + 1)
       end
@@ -73,4 +81,5 @@ class SchedulesController < ApplicationController
   def now
     @now = Date.today
   end
+
 end
