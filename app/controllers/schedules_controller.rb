@@ -73,6 +73,4 @@ class SchedulesController < ApplicationController
   def now
     @now = Date.today
   end
-
- 
 end

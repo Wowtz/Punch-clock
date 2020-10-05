@@ -15,17 +15,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_104711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "day_offs", force: :cascade do |t|
-    t.datetime "dayoff"
-  end
-
   create_table "dayoffs", force: :cascade do |t|
     t.date "vacantday"
   end

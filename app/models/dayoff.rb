@@ -1,3 +1,2 @@
 class Dayoff < ApplicationRecord
-    
 end

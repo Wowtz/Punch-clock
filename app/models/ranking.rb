@@ -1,3 +1,2 @@
 class Ranking < ApplicationRecord
-    
 end

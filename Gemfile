@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
-# yuki que passou é top da balada e do role é nois porra caralho
+# Bundles desse sistema
 gem 'normalize-rails'
 gem 'jquery-rails'
 gem 'bourbon'
@@ -15,6 +15,7 @@ gem 'font-awesome-rails'
 gem 'sprockets', '~> 3.7.2'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use postgresql as the database for Active Record

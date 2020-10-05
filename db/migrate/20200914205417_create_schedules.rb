@@ -3,6 +3,7 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
     create_table :schedules do |t|
       t.datetime :started_at
       t.datetime :finished_at
+
     end
   end
 end
