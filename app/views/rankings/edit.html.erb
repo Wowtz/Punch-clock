@@ -1,5 +1,0 @@
-<%= form_for @ranking do |f| %>
- <%= f.hidden_field(:time, :value => @ranking.time + 1) %>
- <%= f.submit %>
-<% end %>
-<%= link_to "Voltar", schedules_path %>

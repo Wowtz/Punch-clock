@@ -30,26 +30,23 @@ class SchedulesController < ApplicationController
   end
 
   def update
+    @a = Schedule.second_to_last.finished_at.to_date + 1.days
+    @b = Date.today
+
     case params[:status]
     when 'starting'
-     @schedule.update(started_at: Time.zone.now)
+     @schedule.update(started_at: Date.today)
      redirect_to schedule_path, notice: 'Entrada marcada com sucesso.'
     when 'finishing'
-      @schedule.update(finished_at: Time.zone.now)
+      @schedule.update(finished_at: Date.today)
 
       if Schedule.last.present?
-        a = Schedule.last.finished_at.to_date + 1.days
-        b = Date.today
-        for i in a..b
-          if a.strftime("%A") == "Saturday" || a.strftime("%A") == "Sunday" || a.in?(@dayoffp) || a == b
-            a + 1.days
-          else
+        (@a..@b).map(&:to_date).each do |date|
+          unless date.strftime("%A") == "Saturday" || date.strftime("%A") == "Sunday" || date.in?(@dayoffp) || date == @b
             Ranking.create
-            ranking = Ranking.last
-            ranking.update(time: ranking.time + 1)
+            break
           end
         end
-        Ranking.create if Ranking.last.nil?   
         ranking = Ranking.last
         ranking.update(time: ranking.time + 1)
       end
@@ -83,3 +80,4 @@ class SchedulesController < ApplicationController
   end
 
 end
+
